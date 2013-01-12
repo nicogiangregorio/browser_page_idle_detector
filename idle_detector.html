@@ -1,48 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Test | Idle Detector</title>
+<script type="text/javascript" src="idle_detector.js"></script>
 <script type="text/javascript">
-window.onload = function() {
-	IDLE_DETECTOR.setTimeLimit(5);
-	IDLE_DETECTOR.startCountdown(appendToBody);
-	
-	document.onmousemove = function() {
-		IDLE_DETECTOR.checkCountdown();
-	}
-	document.onclick = function() {
-		IDLE_DETECTOR.checkCountdown();
-	}
-	document.onkeypress = function() {
-		IDLE_DETECTOR.checkCountdown();
-	}
-	
-}
-function appendToBody(){
-	document.getElementById('testDiv').innerHTML = 'Last refreshed on: ' + new Date();
-}
 
-IDLE_DETECTOR = function() {
-	var _counter = 0;
-	var _TIMELIMIT = 1000;
-	var _callback = {};
-	return {
-		setTimeLimit: function(timeout) {_TIMELIMIT = timeout;},
-		startCountdown: function(callback) {
-							_counter++; 
-							_callback = callback; 
-							setTimeout(function() {console.log(_counter);IDLE_DETECTOR.startCountdown(_callback)}, 1000);
-						},
-		checkCountdown: function() {
-			if (_counter > _TIMELIMIT) {
-				_callback();
-			}
-			_counter = 0;
-		}
-	};
-}();
-
+	window.onload = function() {
+		IDLE_DETECTOR.init(5, appendToBody);
+		IDLE_DETECTOR.startCountdown();
+		
+	}
+	function appendToBody(){
+		document.getElementById('testDiv').innerHTML = 'Last refreshed on: ' + new Date();
+	}
 </script>
 </head>
 <body>
+	<h3>Forget this page for 5 seconds and when you return back, see what it shows.</h3>
 	<p id="testDiv"></p>
 </body>
 </html>
