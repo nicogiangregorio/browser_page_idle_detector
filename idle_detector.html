@@ -7,11 +7,11 @@
 <script type="text/javascript">
 
 	window.onload = function() {
-		IDLE_DETECTOR.init(5, appendToBody);
+		IDLE_DETECTOR.init(5, appendText);
 		IDLE_DETECTOR.startCountdown();
 		
 	}
-	function appendToBody(){
+	function appendText(){
 		document.getElementById('testDiv').innerHTML = 'Last refreshed on: ' + new Date();
 	}
 </script>
