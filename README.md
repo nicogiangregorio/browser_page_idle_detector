@@ -12,7 +12,7 @@ USAGE:
 	IDLE_DETECTOR.startCountdown();
  
  if not specified, default timeout is 30 minutes.
- callback may be any custom function defined by user.
+ callback may be any custom function defined by user, for instance: page reload, ajax page blocks refresh, etc.
  
  For a detailed example, see the example attached.
 
