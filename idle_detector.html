@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript">
+window.onload = function() {
+	IDLE_DETECTOR.setTimeLimit(5);
+	IDLE_DETECTOR.startCountdown(appendToBody);
+	
+	document.onmousemove = function() {
+		IDLE_DETECTOR.checkCountdown();
+	}
+	document.onclick = function() {
+		IDLE_DETECTOR.checkCountdown();
+	}
+	document.onkeypress = function() {
+		IDLE_DETECTOR.checkCountdown();
+	}
+	
+}
+function appendToBody(){
+	document.getElementById('testDiv').innerHTML = 'Last refreshed on: ' + new Date();
+}
+
+IDLE_DETECTOR = function() {
+	var _counter = 0;
+	var _TIMELIMIT = 1000;
+	var _callback = {};
+	return {
+		setTimeLimit: function(timeout) {_TIMELIMIT = timeout;},
+		startCountdown: function(callback) {
+							_counter++; 
+							_callback = callback; 
+							setTimeout(function() {console.log(_counter);IDLE_DETECTOR.startCountdown(_callback)}, 1000);
+						},
+		checkCountdown: function() {
+			if (_counter > _TIMELIMIT) {
+				_callback();
+			}
+			_counter = 0;
+		}
+	};
+}();
+
+</script>
+</head>
+<body>
+	<p id="testDiv"></p>
+</body>
+</html>
