@@ -24,17 +24,17 @@ var IDLE_DETECTOR = function() {
 							
 							document.onmousemove = function() {
 								IDLE_DETECTOR.checkCountdown();
-							}
+							};
 							document.onclick = function() {
 								IDLE_DETECTOR.checkCountdown();
-							}
+							};
 							document.onkeypress = function() {
 								IDLE_DETECTOR.checkCountdown();
-							}
+							};
 						},
 		startCountdown: function() {
 							_counter++;
-							setTimeout(function() {IDLE_DETECTOR.startCountdown()}, 1000);
+							setTimeout(function() {IDLE_DETECTOR.startCountdown();}, 1000);
 						},
 		checkCountdown: function() {
 			
